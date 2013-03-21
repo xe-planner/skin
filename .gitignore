@@ -1,0 +1,86 @@
+<!---------------------------------------------------------------------------------------------------------------------
+PlannerXE123 Custom Colorset (by eond.com)
+<!--------------------------------------------------------------------------------------------------------------------->
+
+<style type="text/css">
+/************
+ 기존값 감추기
+************/
+
+/* 전체글 수 출력 */
+.infoSum {display:none;}
+/* 기존 게시판 설정 */
+.infoView {display:none;}
+/* 기존 기념일 */
+.planner_navigation form {display:none;}
+.planner_navigation span {display:none;}
+/*
+.planer123 .planner_control
+*/
+/* 기존 달력 년월 제목*/
+.planner_this {display:none;}
+
+
+/************
+ 새로운 설정
+************/
+
+/* 요일 */
+.wd_title {font-family:verdana;}
+
+/* 달력 타이틀 */
+.planner_this {clear:both;width:100%;text-align:center;border:0px solid red;}
+.planner_this span {color:#646464;font-family:Courier, Arial;font-weight:normal;font-size:1.3em;letter-spacing:-1px}
+
+/* 오늘 */
+.planner123 table tbody .today_bg {background:#FFFFD9;border:2px solid #F9EB8A;}
+.planner123 table td .today_date_bg {background-color:#FFFFCC;}
+/*
+.today_date_bg => tbody td / table tbody / table td / table tbody td 가능
+.today_bg => table tbody 만 가능
+*/
+</style>
+<!--%import("http://twitter.github.com/bootstrap/assets/css/bootstrap.css")-->
+<!--#%import("http://twitter.github.com/bootstrap/assets/js/bootstrap-dropdown.js")-->
+
+<!--//S: 라이프팟 게시판 설정-->
+
+<div class="btn-toolbar pull-left">
+  <div class="btn-group">
+  <a class="btn" href="{$linkpath}&amp;pYear={$pYear}&amp;pMonth={$pMonth-1}"><i class="icon-chevron-left"></i></a>
+	<a class="btn" href="{$linkpath}&amp;pOption_2={$pOption_2}&amp;pYear={$todayYY}&amp;pMonth={$todayMM}&amp;pDay={$todayDD}">오늘</a>
+	<a class="btn" href="{$linkpath}&amp;pYear={$pYear}&amp;pMonth={$pMonth+1}"><i class="icon-chevron-right"></i></a>
+  </div>
+</div>
+
+<!--@if($module_info->display_country_select != 'N')-->
+<div class="btn-toolbar pull-left" style="margin-left:10px;">
+<div class="btn-group">
+  <a class="btn">{$holiday_country_name}</a><a class="btn dropdown-toggle" data-toggle="dropdown"><span><i class="icon-globe"></i></span></a>
+  <ul class="dropdown-menu">
+	<!--@foreach($holiday_cnt_arr as $cnt_key => $cnt_val)-->
+	<li value="{$cnt_key}"><a href="{getUrl('pGanjioption',1,'pHoliday_cnt',"$cnt_key")}">{$cnt_val}</a></li>
+	<!--@end-->
+  </ul>
+</div></div><!--@endif-->
+
+<div class="btn-toolbar pull-right">
+  <div class="btn-group">
+	<a class="btn" href="{getUrl('listStyle','planner_simple','act','','document_srl','','device','','extra_vars1','','pOption','M')}"><i class="icon-tasks"></i></a>
+	<a class="btn" href="{getUrl('listStyle','planner_list','act','','document_srl','','device','','extra_vars1','','pOption','M')}"><i class="icon-list"></i></a>
+	<a class="btn" href="{getUrl('act','','document_srl','','device','','extra_vars1','','pOption','W1')}">주</a>
+	<a class="btn" href="{getUrl('act','','document_srl','','device','','extra_vars1','','pOption','W2')}">2주</a>
+	<a class="btn" href="{getUrl('listStyle','planner','act','','document_srl','','device','','extra_vars1','','pOption','M')}">월</a>
+	<a class="btn" href="{getUrl('listStyle','list','act','','document_srl','','device','','extra_vars1','')}">목록</i></a>
+  </div>
+</div>
+<!--#@if($grant->is_admin)-->
+<div class="btn-toolbar pull-right visible-desktop" style="margin-right:10px;">
+  <div class="btn-group">
+	<a class="btn" href="{$tmp_size}"><i class="icon-zoom-in"></i></a>
+	<a class="btn" href="{getUrl('document_srl','','device','printer','extra_vars1','')}"><i class="icon-print"></i></a>
+	<!--@if($module_info->module == 'bodex')--><a class="btn" href="{getUrl('act','dispBodexAdminBoardInfo')}"><!--@else--><a class="btn" href="{getUrl('act','dispBoardAdminBoardInfo')}"><!--@end--><i class="icon-cog"></i></a>
+  </div>
+</div>
+<!--#@end-->
+<!--//E: 라이프팟 게시판 설정-->
